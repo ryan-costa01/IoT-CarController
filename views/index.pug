@@ -1,0 +1,24 @@
+extends layout
+
+
+block content
+  h1= title
+  .request-time
+    p Conexão feita em: #{connectionTime}
+  .video-container
+    video#video-frame(width="640" height="480" controls)
+  .post-data
+    p Velocidade: 
+    span.key= speed
+    br
+    p Direção: 
+    span.key= direction
+  form(action="/" method="post")
+    div
+      label(for="speed") Velocidade:
+      input(type="text" name="speed" id="speed")
+    div
+      label(for="direction") Direção:
+      input(type="text" name="direction" id="direction")
+    div
+      button(type="submit") Enviar
