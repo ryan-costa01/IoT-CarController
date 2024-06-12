@@ -1,0 +1,22 @@
+[Unit]
+
+# Descrição do serviço
+Description = Rodar o Projeto
+
+# Este serviço será iniciado após o carregamento do ambiente multiusuário
+After=multi-user.target
+
+[Service]
+# Comando a ser executado para iniciar o serviço
+ExecStart=/usr/bin/python3 /home/sel/mqtt.py
+
+# Comando opcional para parar o serviço
+
+#ExecStop
+
+# Usuário sob o qual o serviço será executado
+user=sel
+
+[Install]
+# Define quando esse serviço deve ser iniciado
+WantedBy=multi-user.target
