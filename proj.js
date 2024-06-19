@@ -51,6 +51,9 @@ async function connectToMQTT() {
             
         });
 
+        const carrinhos = await Carrinho.find()
+        console.log(carrinhos)
+
         client.on('error', (error) => {
             console.error('Erro:', error);
         });
