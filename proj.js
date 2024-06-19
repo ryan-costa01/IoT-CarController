@@ -14,7 +14,12 @@ async function connectToMQTT() {
         client.on('connect', () => {
             console.log('Conectado ao broker MQTT.');
             const topic = 'jesse';
-            const message = 'test message';
+            const message = JSON.stringify({
+              velAtual: 1.2,
+              acelAtual: 3.4,
+              posiAtual: 56.7,
+              dirAtual: 'Cachorro'
+             })
             console.log(`Mensagem: ${message}, Tópico: ${topic}`);
             client.publish(topic, message, (err) => {
                 if (err) {
