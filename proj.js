@@ -52,6 +52,8 @@ async function connectToMQTT() {
             
         });
         await data.save()
+        const carrinhos = await Carrinho.find()
+        console.log(carrinhos)
 
         
 
@@ -73,8 +75,7 @@ async function connectToMQTT() {
 async function main() {
       await mongoose.connect('mongodb://vitoreu:vibaryje7@localhost:27017');
       connectToMQTT();
-      const carrinhos = await Carrinho.find()
-      console.log(carrinhos)
+      
 
     } 
 main().catch(err => console.log(err))
