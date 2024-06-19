@@ -22,11 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Middleware para imprimir a data e hora da requisição e o método HTTP
-app.use(function (req, res, next) {
-  console.log(`Time: ${new Date().toISOString()}, Method: ${req.method}`);
-  next();
-});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
