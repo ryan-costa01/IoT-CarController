@@ -53,7 +53,7 @@ async function connectToMQTT() {
 }
 async function main() {
     connectToMQTT();
-    await mongoose.connect('mongodb://vitoreu:vibaryje7@mongo:27017');
+    await mongoose.connect('mongodb://mongo:27017');
     const schemaDados = new mongoose.Schema({
         velAtual: Number,
         acelAtual: Number,
@@ -75,6 +75,7 @@ async function main() {
       console.log(carrinhos)
 
     } 
+main().catch(err => console.log(err))
 
 
 
