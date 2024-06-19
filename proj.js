@@ -54,8 +54,9 @@ async function connectToMQTT() {
         });
 
         client.on('message', (topic, message) => {
-            console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
             saveData(message)
+            console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
+            
             
             
             
