@@ -1,0 +1,14 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+  mongo:
+      image: mongo
+      restart: always
+      ports: 
+        - "27017:27017"
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: vitoreu
+        MONGO_INITDB_ROOT_PASSWORD: vibaryje7
