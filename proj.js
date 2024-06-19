@@ -45,12 +45,13 @@ async function connectToMQTT() {
             });
         });
 
-        async client.on('message', (topic, message) => {
+        client.on('message', (topic, message) => {
             console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
             const data = new Carrinho(JSON.parse(message))
-            await data.save()
+            
             
         });
+        await data.save()
 
         
 
