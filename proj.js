@@ -48,11 +48,11 @@ async function connectToMQTT() {
         client.on('message', (topic, message) => {
             console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
             const data = new Carrinho(JSON.parse(message))
+            data.save()
             
         });
 
-        const carrinhos = await Carrinho.find()
-        console.log(carrinhos)
+        
 
         client.on('error', (error) => {
             console.error('Erro:', error);
