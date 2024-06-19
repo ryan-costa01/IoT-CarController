@@ -8,7 +8,7 @@ const schemaDados = new mongoose.Schema({
 });
 const Carrinho = mongoose.model("Carrinho", schemaDados);
 
-async function saveData(String message){
+async function saveData(message){
     const data = new Carrinho(JSON.parse(message))
     await data.save()  
     const carrinhos = await Carrinho.find()
@@ -55,7 +55,7 @@ async function connectToMQTT() {
 
         client.on('message', (topic, message) => {
             console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
-            saveData()
+            saveData(message)
             
             
             
