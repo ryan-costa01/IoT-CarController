@@ -60,13 +60,13 @@ async function main() {
         posiAtual: Number,
         dirAtual: String
       });
-      // const dados = JSON.stringify({
-      //   velAtual: 1.2,
-      //   acelAtual: 3.4,
-      //   posiAtual: 56.7,
-      //   dirAtual: 'Cachorro'
+       const dados = JSON.stringify({
+        velAtual: 1.2,
+        acelAtual: 3.4,
+        posiAtual: 56.7,
+        dirAtual: 'Cachorro'
       
-      // })
+      })
       
       const Carrinho = mongoose.model("Carrinho", schemaDados);
       const data = new Carrinho(JSON.parse(dados))
