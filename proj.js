@@ -22,6 +22,14 @@ async function connectToMQTT() {
                 } else {
                     console.log('Mensagem publicada com sucesso.');
                 }
+                const schemaDados = new mongoose.Schema({
+                    velAtual: Number,
+                    acelAtual: Number,
+                    posiAtual: Number,
+                    dirAtual: String
+                  });
+                const Carrinho = mongoose.model("Carrinho", schemaDados);
+                
             });
             client.subscribe(topic, (err) => {
                 if (err) {
@@ -34,6 +42,8 @@ async function connectToMQTT() {
 
         client.on('message', (topic, message) => {
             console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
+            const data = new Carrinho(JSON.parse(message))
+            await data.save()
         });
 
         client.on('error', (error) => {
@@ -52,25 +62,14 @@ async function connectToMQTT() {
     }
 }
 async function main() {
-    connectToMQTT();
     await mongoose.connect('mongodb://vitoreu:vibaryje7@localhost:27017');
-    const schemaDados = new mongoose.Schema({
-        velAtual: Number,
-        acelAtual: Number,
-        posiAtual: Number,
-        dirAtual: String
-      });
-       const dados = JSON.stringify({
-        velAtual: 1.2,
-        acelAtual: 3.4,
-        posiAtual: 56.7,
-        dirAtual: 'Cachorro'
-      
-      })
-      
-      const Carrinho = mongoose.model("Carrinho", schemaDados);
-      const data = new Carrinho(JSON.parse(dados))
-      await data.save()
+      //  const dados = JSON.stringify({
+      //   velAtual: 1.2,
+      //   acelAtual: 3.4,
+      //   posiAtual: 56.7,
+      //   dirAtual: 'Cachorro'
+      // })
+      connectToMQTT();
       const carrinhos = await Carrinho.find()
       console.log(carrinhos)
 
