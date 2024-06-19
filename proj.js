@@ -71,6 +71,9 @@ async function main() {
       const Carrinho = mongoose.model("Carrinho", schemaDados);
       const data = new Carrinho(JSON.parse(dados))
       await data.save()
+      const carrinhos = await Carrinho.find()
+      console.log(carrinhos)
+
     } 
 
 
