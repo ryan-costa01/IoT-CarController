@@ -1,7 +1,8 @@
 import paho.mqtt.client as mqtt
 import time
 import json
-
+import RPi.GPIO as GPIO
+import time
 
 broker = "igbt.eesc.usp.br"
 port = 1883 
@@ -9,6 +10,13 @@ topic = "jesse"
 
 
 data = [0, 1, 2, 3]
+
+def callback(channel):
+    
+
+
+#def tempo(timer):
+ #   client.publish(topic, json.dumps(data))
 
 # Função que será chamada quando o cliente se conectar ao broker
 def on_connect(client, userdata, flags, rc, properties=None):
@@ -34,6 +42,9 @@ def on_message(client, userdata, msg):
      #   print("Os dados recebidos são diferentes dos dados enviados.")
     #client.disconnect()
 
+GPIO.setmode(17, GPIO.IN)
+
+GPIO.add_event_detect
 
 client = mqtt.Client()
 
@@ -46,6 +57,9 @@ client.username_pw_set(username="mqtt", password="mqtt_123_abc")
 client.connect(broker, port, 60)
 
 client.loop_forever()
+
+temporizador.init(freq =1, mode =Timer.PERIODIC, callback = tempo)
+
 # Iniciar o loop do cliente para processar callbacks e manter a conexão
 #client.loop_start()
 
