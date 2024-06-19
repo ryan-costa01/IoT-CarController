@@ -48,8 +48,7 @@ async function connectToMQTT() {
         client.on('message', (topic, message) => {
             console.log(`Mensagem recebida: ${message.toString()} no tópico: ${topic}`);
             const data = new Carrinho(JSON.parse(message))
-            const carrinhos = await Carrinho.find()
-            console.log(carrinhos)
+            
         });
 
         client.on('error', (error) => {
@@ -69,12 +68,6 @@ async function connectToMQTT() {
 }
 async function main() {
       await mongoose.connect('mongodb://vitoreu:vibaryje7@localhost:27017');
-      //  const dados = JSON.stringify({
-      //   velAtual: 1.2,
-      //   acelAtual: 3.4,
-      //   posiAtual: 56.7,
-      //   dirAtual: 'Cachorro'
-      // })
       connectToMQTT();
       const carrinhos = await Carrinho.find()
       console.log(carrinhos)
