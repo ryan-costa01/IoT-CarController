@@ -1,5 +1,13 @@
 const mqtt = require('mqtt');
 const mongoose = require('mongoose');
+const schemaDados = new mongoose.Schema({
+    velAtual: Number,
+    acelAtual: Number,
+    posiAtual: Number,
+    dirAtual: String
+});
+const Carrinho = mongoose.model("Carrinho", schemaDados);
+
 
 async function connectToMQTT() {
     try {
@@ -58,14 +66,7 @@ async function connectToMQTT() {
     }
 }
 async function main() {
-    const schemaDados = new mongoose.Schema({
-         velAtual: Number,
-         acelAtual: Number,
-         posiAtual: Number,
-         dirAtual: String
-    });
-    const Carrinho = mongoose.model("Carrinho", schemaDados);
-    await mongoose.connect('mongodb://vitoreu:vibaryje7@localhost:27017');
+      await mongoose.connect('mongodb://vitoreu:vibaryje7@localhost:27017');
       //  const dados = JSON.stringify({
       //   velAtual: 1.2,
       //   acelAtual: 3.4,
