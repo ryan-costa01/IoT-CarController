@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   connectButton.addEventListener('click', function() {
     if (!isConnected) {
-      socket = new WebSocket('ws://vibaryje.igbt.eesc.usp.br');
+      socket = new WebSocket('http://vibaryje.igbt.eesc.usp.br');
       socket.binaryType = 'arraybuffer';
 
       socket.addEventListener('open', function() {
