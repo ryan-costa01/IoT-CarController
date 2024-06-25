@@ -1,0 +1,15 @@
+{
+  "name": "iot-carcontroller",
+  "version": "1.0.0",
+  "description": "<a name=\"readme-top\"></a>",
+  "main": "proj.js",
+  "scripts": {
+    "test": "node proj.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.4.3",
+    "mqtt": "^5.7.2"
+  }
+}
