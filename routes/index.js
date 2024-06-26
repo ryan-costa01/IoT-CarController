@@ -37,23 +37,23 @@ router.post('/', function(req, res, next) {
   if (req.body.speed) {
     currentData.speed = req.body.speed;
   }
-  if (req.body.direction) {
-    console.log(req.body.direction, ' = ', currentData.prevDirection, ' ?');
-    currentData.direction = req.body.direction;
-    if(currentData.direction != currentdData.prevDirection){
-      currentData.prevDirection = currentData.direction; 
-      console.log(currentData.prevDirection);
-      publishToMQTT('jesse', req.body.direction);
-    }
-  }else{
-    //publishToMQTT('jesse', "NONE");
-  }
-    
-    
   // if (req.body.direction) {
+  //   console.log(req.body.direction, ' = ', currentData.prevDirection, ' ?');
   //   currentData.direction = req.body.direction;
-  //   publishToMQTT('jesse', req.body.direction);
-  // }
+  //   if(currentData.direction != currentdData.prevDirection){
+  //     currentData.prevDirection = currentData.direction; 
+  //     console.log(currentData.prevDirection);
+  //     publishToMQTT('jesse', req.body.direction);
+  //   }
+  // }else{
+  //   //publishToMQTT('jesse', "NONE");
+  //}
+    
+    
+  if (req.body.direction) {
+    currentData.direction = req.body.direction;
+    publishToMQTT('jesse', req.body.direction);
+  }
 
   res.render('index', {
     title: 'VIBARYJE',
