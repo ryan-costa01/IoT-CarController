@@ -6,7 +6,8 @@ var { publishToMQTT } = require('../public/javascripts/proj');
 
 var currentData = {
   speed: 'N/A',
-  direction: 'N/A'
+  direction: 'N/A',
+  prevDirection: 'N/A'
 };
 
 /* Middleware to add request time */
@@ -36,10 +37,15 @@ router.post('/', function(req, res, next) {
   if (req.body.speed) {
     currentData.speed = req.body.speed;
   }
-  if (req.body.direction) {
-    currentData.direction = req.body.direction;
+  currentData.direction = req.body.direction;
+  if(currentData.direction != currentdData.prevDirection){
     publishToMQTT('jesse', req.body.direction);
-  }
+    currentdData.prevDirection = currentData.direction; 
+    
+  // if (req.body.direction) {
+  //   currentData.direction = req.body.direction;
+  //   publishToMQTT('jesse', req.body.direction);
+  // }
 
   res.render('index', {
     title: 'VIBARYJE',
