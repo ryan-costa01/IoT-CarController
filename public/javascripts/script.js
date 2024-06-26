@@ -9,12 +9,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   connectButton.addEventListener('click', function() {
     if (!isConnected) {
-      socket = new WebSocket('ws://vibaryje.igbt.eesc.usp.br');
+      const wsUrl = (location.protocol === 'https:') ? 'wss://' : 'ws://';
+      const fullWsUrl = wsUrl + 'vibaryje.igbt.eesc.usp.br:6004'; // Add port number if necessary
+      console.log('Connecting to WebSocket:', fullWsUrl);
+      socket = new WebSocket(fullWsUrl);
       socket.binaryType = 'arraybuffer';
 
       socket.addEventListener('open', function() {
         isConnected = true;
         directionDisplay.textContent = 'Conectado. Use as setas do teclado.';
+        console.log('WebSocket connection opened.');
       });
 
       socket.addEventListener('message', function(event) {
@@ -32,6 +36,11 @@ document.addEventListener('DOMContentLoaded', function() {
       socket.addEventListener('close', function() {
         isConnected = false;
         directionDisplay.textContent = 'Desconectado';
+        console.log('WebSocket connection closed.');
+      });
+
+      socket.addEventListener('error', function(event) {
+        console.error('WebSocket error observed:', event);
       });
 
       document.addEventListener('keydown', handleDirectionKey);
