@@ -39,7 +39,10 @@ router.post('/', function(req, res, next) {
   }
   currentData.direction = req.body.direction;
   if(currentData.direction != currentdData.prevDirection){
-    publishToMQTT('jesse', req.body.direction);
+    if (req.body.direction){
+      publishToMQTT('jesse', req.body.direction);
+    }else{
+      publishToMQTT('jesse', "");
     currentdData.prevDirection = currentData.direction; 
   }
     
