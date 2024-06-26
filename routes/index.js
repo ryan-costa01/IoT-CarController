@@ -6,8 +6,7 @@ var { publishToMQTT } = require('../public/javascripts/proj');
 
 var currentData = {
   speed: 'N/A',
-  direction: 'N/A',
-  prevDirection: 'N/A'
+  direction: 'N/A'
 };
 
 /* Middleware to add request time */
