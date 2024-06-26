@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   connectButton.addEventListener('click', function() {
     if (!isConnected) {
       const wsUrl = (location.protocol === 'https:') ? 'wss://' : 'ws://';
-      const fullWsUrl = wsUrl + 'vibaryje.igbt.eesc.usp.br:6004'; // Add port number if necessary
+      const fullWsUrl = wsUrl + 'vibaryje.igbt.eesc.usp.br'; // Add port number if necessary
       console.log('Connecting to WebSocket:', fullWsUrl);
       socket = new WebSocket(fullWsUrl);
       socket.binaryType = 'arraybuffer';
