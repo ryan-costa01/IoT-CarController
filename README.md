@@ -5,38 +5,88 @@ Repositório para a matéria de Projetos em IoT 2024.1
 
 Esse é um Projeto de IoT voltado para o controle remoto de um Veículo Elétrico. As funcionalidades dessa aplicação consiste em realizar o controle de direção do veículo, bem como receber imagem de vídeo atraves de uma câmera implementada no protótipo. Todo esse controle será feito atraves de uma página WEB, que mostrará uma interface com o vídeo que o veículo estará gravando. 
    
-## :wrench: Explicação do programa
-### Interface Web
+## :file_folder: Estrutura de Diretórios
 
-Para realizar a implementação do servidor web na nossa aplicação, foi utilizada a ferramenta do JavaScript `Express` para o Back-End, juntamente com `HTML` e `CSS` para o Front-End. 
+A estrutura de arquivos do projeto Front-End é organizada da seguinte forma:
 
-O protocolo de comunicação escolhido  para o projeto é o `Websocket` e o `SSH`.
+.
 
-O hardware escolhido para realizar o controle e alimentação do veículo é a placa `Torizon Toradex`.
+├── app.js
 
-Para realizar o streaming e o processamento de imagens do vídeo, foi utilizado a biblioteca `OpenCV` do Python.
+├── bin
 
-### Funcionalidades 
-A página web conta com uma interface gráfica que disponibilizará o vídeo e a direção que o veículo está percorrendo.
+│ └── www
 
-O programa verifica se o veículo está devidamente conectado ou se ocorreu um erro de conexão.
+├── package.json
 
-O vídeo contará com uma aplicação de Visão Computacional, a qual realizará a detecção de cones e distância entre eles.
+├── public
+
+│ ├── images
+
+│ ├── javascripts
+
+│ │ ├── proj.js
+
+│ │ └── script.js
+
+│ └── stylesheets
+
+│ └── style.css
+
+├── routes
+
+│ ├── index.js
+
+│ └── users.js
+
+└── views
+
+├── error.pug
+
+├── index.pug
+
+└── layout.pug
+
+
+### Descrição dos Arquivos e Diretórios
+
+- `app.js`: Arquivo principal da aplicação que configura e inicializa o servidor Express, define as rotas e gerencia os middlewares.
+
+- `bin/www`: Script de inicialização do servidor HTTP, configurando a porta e lidando com eventos de erro e de conexão.
+
+- `package.json`: Arquivo de configuração do npm que lista as dependências do projeto e scripts úteis para executar e gerenciar a aplicação.
+
+- `public/`: Diretório que contém arquivos estáticos acessíveis pela web.
+  - `images/`: Diretório para armazenar imagens utilizadas pela aplicação.
+  - `javascripts/`: Diretório para arquivos JavaScript utilizados no Front-End.
+    - `proj.js`: Arquivo JavaScript para configuração e controle do projeto IoT.
+    - `script.js`: Arquivo JavaScript para manipulação da interface web e comunicação via WebSocket.
+  - `stylesheets/`: Diretório para arquivos CSS, incluindo `style.css`, que define o estilo visual da aplicação.
+
+- `routes/`: Diretório que contém os módulos de rotas da aplicação.
+  - `index.js`: Define as rotas principais da aplicação.
+  - `users.js`: Define as rotas relacionadas a usuários.
+
+- `views/`: Diretório que contém as views da aplicação, utilizando o motor de templates Pug.
+  - `error.pug`: Template para páginas de erro.
+  - `index.pug`: Template para a página principal.
+  - `layout.pug`: Template base utilizado pelas outras views.
 
 
 ## :rocket: Rodando o projeto
+No terminal do Virtualhost:
 
 1. Clone o repositório
    ```sh
    git clone git@github.com:VitorFMaiaB/IoT-CarController.git
    ```
-2. Inicialize o programa
+2. Instale as dependências
    ```cmd
-   python proj_main.py
+   npm install
    ```
-3. Acesse a página web da aplicação
+3. Inicie a aplicação
    ```cmd
-   python proj_main.py
+   npm start
    ```
 ## :memo: License
 
